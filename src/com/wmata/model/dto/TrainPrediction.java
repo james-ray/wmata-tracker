@@ -36,11 +36,11 @@ public class TrainPrediction {
     @JsonProperty("Min")
     private String min;  // "ARR" (arriving), "BRD" (boarding), or number of minutes
 
-    // 添加这两个字段用于状态标记
+    // add these two fields for marking flags
     private boolean arriving;
     private boolean boarding;
 
-    // 辅助方法
+    // Auxiliary method
     public boolean isArriving() {
         return arriving || "ARR".equals(min);
     }

@@ -25,7 +25,6 @@ public class LineService {
 
     public void refreshLinesFromApi() throws Exception {
         var response = wmataApiService.getAllLines();
-        // 这里应该解析响应并保存到数据库
-        // 为了简化，暂时留空
+        // TODO: Parse the response and store to db
     }
 }

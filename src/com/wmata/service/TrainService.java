@@ -26,10 +26,10 @@ public class TrainService {
     }
 
     public List<TrainPrediction> getPredictionsForLine(String lineCode) throws Exception {
-        // 获取该线路的所有车站
+        // get stations in this line
         var stations = stationService.getStationsByLine(lineCode);
 
-        // 获取所有车站的预测（这里简化处理，实际可能需要并行调用）
+        // get predictions of all stations, TODO: parallel handle
         return stations.stream()
                 .flatMap(station -> {
                     try {
@@ -43,7 +43,7 @@ public class TrainService {
     }
 
     private TrainPrediction enrichTrainPrediction(TrainPrediction prediction) {
-        // 处理特殊时间值
+        // handle special values of min
         String min = prediction.getMin();
         if ("ARR".equals(min)) {
             prediction.setArriving(true);

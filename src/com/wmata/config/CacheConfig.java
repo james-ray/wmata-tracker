@@ -14,7 +14,7 @@ public class CacheConfig {
         return new ConcurrentMapCacheManager("trainPredictions", "stationInfo");
     }
 
-    // 每30秒清除一次缓存，强制刷新数据
+    // clear the cache every 30s
     @Scheduled(fixedRate = 30000)
     public void clearCache() {
         cacheManager().getCache("trainPredictions").clear();

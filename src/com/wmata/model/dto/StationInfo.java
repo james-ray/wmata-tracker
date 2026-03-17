@@ -41,7 +41,7 @@ public class StationInfo {
     @JsonProperty("StationTogether2")
     private String stationTogether2;
 
-    // 辅助方法：获取所有非空的线路代码（可选）
+    // Auxiliary method: get all non-empty line codes
     public String[] getValidLineCodes() {
         java.util.ArrayList<String> codes = new java.util.ArrayList<>();
         if (lineCode1 != null && !lineCode1.isEmpty()) codes.add(lineCode1);
@@ -51,7 +51,7 @@ public class StationInfo {
         return codes.toArray(new String[0]);
     }
 
-    // 辅助方法：获取相连车站（可选）
+    // Auxiliary method: get connected stations
     public String[] getConnectedStations() {
         java.util.ArrayList<String> connected = new java.util.ArrayList<>();
         if (stationTogether1 != null && !stationTogether1.isEmpty()) connected.add(stationTogether1);

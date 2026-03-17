@@ -44,8 +44,8 @@ public class TrainController {
 
     @GetMapping("/live/{lineCode}")
     public ResponseEntity<?> getLiveTrainsForLine(@PathVariable String lineCode) {
-        // 获取某条线路上的实时列车位置
-        // 这个API可能需要组合多个数据源
+        // get real-time train positions
+        // this api might need to combine multiple datasources
         return ResponseEntity.ok().build();
     }
 }

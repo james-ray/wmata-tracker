@@ -28,18 +28,16 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // 初始化线路数据
+        // init line data
         initLines();
 
-        // 初始化车站数据
+        // init station data
         initStations();
     }
 
     private void initLines() throws Exception {
         if (lineRepository.count() == 0) {
             WmataLineResponse response = wmataApiService.getAllLines();
-            // 这里需要根据实际的API响应格式来解析
-            // 为了简化，我先手动添加一些线路
             Line redLine = new Line();
             redLine.setLineCode("RD");
             redLine.setDisplayName("Red");
@@ -50,7 +48,7 @@ public class DataInitializer implements CommandLineRunner {
             blueLine.setDisplayName("Blue");
             lineRepository.save(blueLine);
 
-            // 可以继续添加其他线路
+            // We can add more lines if needed
         }
     }
 
@@ -62,7 +60,10 @@ public class DataInitializer implements CommandLineRunner {
                 stationRepository.save(station);
             }
 
-            // 可以继续初始化其他线路的车站
+            response = wmataApiService.getStationsByLine("RD");
+            for (Station station : response.getStations()) {
+                stationRepository.save(station);
+            }
         }
     }
 }

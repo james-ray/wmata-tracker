@@ -50,7 +50,6 @@ public class Station {
     @JsonProperty("StationTogether2")
     private String stationTogether2;
 
-    // 将 Address 改为 @Embeddable 类
     @Embeddable
     @Data
     @NoArgsConstructor
@@ -67,7 +66,7 @@ public class Station {
         @JsonProperty("Zip")
         private String zip;
 
-        // 辅助方法：获取完整地址
+        // Auxiliary method: get full address
         public String getFullAddress() {
             return String.format("%s, %s, %s %s",
                     street != null ? street : "",
@@ -77,7 +76,7 @@ public class Station {
         }
     }
 
-    // 辅助方法：获取完整地址
+    // Auxiliary method: get full address
     public String getFullAddress() {
         if (address == null) return "";
         return address.getFullAddress();

@@ -33,13 +33,12 @@ public class StationService {
     }
 
     public StationInfo getStationInfo(String stationCode) throws Exception {
-        // 先从数据库获取
+        // get from db
         Station station = getStationByCode(stationCode);
         if (station == null) {
-            // 如果数据库没有，从API获取
+            // if not exist in db, get from api
             String apiResponse = wmataApiService.getStationInfo(stationCode);
-            // 这里应该解析API响应并保存到数据库
-            // 为了简化，先返回null
+            // TODO: parse the response and store to db
             return null;
         }
 
@@ -51,7 +50,7 @@ public class StationService {
         info.setStationCode(station.getStationCode());
         info.setStationName(station.getStationName());
 
-        // 收集所有线路代码
+        // set all line codes
         info.setLineCode1(station.getLineCode1());
         info.setLineCode2(station.getLineCode2());
         info.setLineCode3(station.getLineCode3());
@@ -60,7 +59,7 @@ public class StationService {
         info.setLat(station.getLat());
         info.setLon(station.getLon());
 
-        // 处理嵌套的地址对象
+        // handle embedded address
         if (station.getAddress() != null) {
             Station.Address addressObj = station.getAddress();
             String address = String.format("%s, %s, %s %s",
@@ -73,7 +72,7 @@ public class StationService {
             info.setAddress("");
         }
 
-        // 处理相连车站
+        // handle connected stations
         info.setStationTogether1(station.getStationTogether1());
         info.setStationTogether2(station.getStationTogether2());
 
